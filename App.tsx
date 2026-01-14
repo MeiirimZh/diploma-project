@@ -1,20 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import NotesScreen from "./screens/NotesScreen";
+import CardsScreen from "./screens/CardsScreen";
+import TestsScreen from "./screens/TestsScreen";
+
+const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Notes" component={ NotesScreen } options={ {title: 'Заметки'} } />
+        <Tab.Screen name="Cards" component={ CardsScreen } options={ {title: 'Карточки'} } />
+        <Tab.Screen name="Tests" component={ TestsScreen } options={ {title: 'Тесты'} } />
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

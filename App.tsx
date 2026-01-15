@@ -27,7 +27,10 @@ export default function App() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           tabBarActiveTintColor: theme.colors.primary,
-          tabBarInactiveTintColor: theme.colors.textMuted
+          tabBarInactiveTintColor: theme.colors.textMuted,
+          
+          headerStyle: {backgroundColor: theme.colors.primary},
+          headerTitleStyle: {color: theme.colors.onPrimary}
         })}
       >
         <Tab.Screen name="Notes" component={ NotesScreen } options={ {title: 'Заметки'} } />

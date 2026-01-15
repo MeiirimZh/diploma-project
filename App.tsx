@@ -6,6 +6,8 @@ import NotesScreen from "./screens/NotesScreen";
 import CardsScreen from "./screens/CardsScreen";
 import TestsScreen from "./screens/TestsScreen";
 
+import { theme } from './src/theme/index';
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -24,8 +26,8 @@ export default function App() {
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: 'hsla(210, 100%, 50%, 1.0)',
-          tabBarInactiveTintColor: 'hsla(0, 0%, 50%, 1.0)'
+          tabBarActiveTintColor: theme.colors.primary,
+          tabBarInactiveTintColor: theme.colors.textMuted
         })}
       >
         <Tab.Screen name="Notes" component={ NotesScreen } options={ {title: 'Заметки'} } />

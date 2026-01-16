@@ -28,6 +28,7 @@ export default function App() {
           },
           tabBarActiveTintColor: theme.colors.primary,
           tabBarInactiveTintColor: theme.colors.textMuted,
+          tabBarStyle: {height: 100},
           
           headerStyle: {backgroundColor: theme.colors.primary},
           headerTitleStyle: {color: theme.colors.onPrimary}

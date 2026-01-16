@@ -8,6 +8,8 @@ import TestsScreen from "./screens/TestsScreen";
 
 import { theme } from './src/theme/index';
 
+import { View, TouchableOpacity } from "react-native";
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -31,7 +33,16 @@ export default function App() {
           tabBarStyle: {height: 100},
           
           headerStyle: {backgroundColor: theme.colors.primary},
-          headerTitleStyle: {color: theme.colors.onPrimary}
+          headerTitleStyle: {color: theme.colors.onPrimary},
+
+          headerLeft: () => (
+            <TouchableOpacity style={ {marginRight: 10} } >
+              <Ionicons name="menu" size={ 24 } color={ theme.colors.onPrimary } />
+            </TouchableOpacity>
+          ),
+          headerLeftContainerStyle: {
+            paddingLeft: 10
+          }
         })}
       >
         <Tab.Screen name="Notes" component={ NotesScreen } options={ {title: 'Заметки'} } />

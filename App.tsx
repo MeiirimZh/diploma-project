@@ -7,12 +7,20 @@ import CardsScreen from "./screens/CardsScreen";
 import TestsScreen from "./screens/TestsScreen";
 
 import { theme } from './src/theme/index';
+import { useFonts } from "expo-font";
 
 import { TouchableOpacity } from "react-native";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [fontsLoaded] = useFonts({
+    'Roboto Regular': require('./assets/fonts/Roboto Regular.ttf'),
+    'Roboto Bold': require('./assets/fonts/Roboto Bold.ttf')
+  });
+
+  if (!fontsLoaded) return null;
+
   return (
     <NavigationContainer>
       <Tab.Navigator

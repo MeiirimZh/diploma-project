@@ -4,22 +4,28 @@ import { useWindowDimensions } from "react-native";
 import { theme } from "../src/theme";
 import AppText from "./AppText";
 
-export default function Note() {
+type Props = {
+    content: String;
+    title: String;
+    date: String;
+};
+
+export default function Note({ content, title, date }: Props) {
     const { width, height } = useWindowDimensions();
 
     return (
         <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.sm } } >
             <View style={ styles.content } >
-                <AppText style= { styles.text } >Lorem ipsum dolor sit amet consectetur adisciping elit</AppText>
+                <AppText style= { styles.text } >{ content }</AppText>
             </View>
 
-            <View style={ styles.desc } >
+            <View>
                 <View>
-                    <AppText numberOfLines={2} style={ [styles.text, styles.titleText] }>Термодинамика</AppText>
+                    <AppText numberOfLines={ 2 } style={ [styles.text, styles.titleText] }>{ title }</AppText>
                 </View>
                 
                 <View>
-                    <AppText style={ [styles.text, styles.dateText] }>19 декаб.</AppText>
+                    <AppText numberOfLines={ 1 } style={ [styles.text, styles.dateText] }>{ date }</AppText>
                 </View>
             </View>
         </View>
@@ -36,16 +42,13 @@ const styles = StyleSheet.create({
 
         height: 220
     },
-    desc: {
-
-    },
     text: {
         fontSize: 14
     },
     titleText: {
         textAlign: 'center',
 
-        fontWeight: 'bold',
+        fontFamily: theme.fonts.bold,
 
         color: theme.colors.text
     },

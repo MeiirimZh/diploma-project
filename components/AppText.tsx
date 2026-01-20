@@ -1,4 +1,5 @@
 import { Text, TextProps, StyleSheet } from 'react-native';
+import { theme } from '../src/theme';
 
 export default function AppText(props: TextProps) {
     return (
@@ -8,6 +9,6 @@ export default function AppText(props: TextProps) {
 
 const styles = StyleSheet.create({
     text: {
-        
+        fontFamily: theme.fonts.regular
     }
 });

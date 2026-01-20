@@ -1,16 +1,21 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
 import { NotesScreenNavigationProp } from '../types';
 import { theme } from '../src/theme';
 
 import Search from '../components/Search';
 import Note from '../components/Note';
+import AppText from '../components/AppText';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
     navigation: NotesScreenNavigationProp;
 };
 
 export default function NotesScreen({ navigation }: Props) {
+    const insets = useSafeAreaInsets();
+
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -38,12 +43,37 @@ export default function NotesScreen({ navigation }: Props) {
                 renderItem={({ item }) => (
                     <Note content={ item.content } title={ item.title } date={ item.date } />
                 )} />
+
+            <TouchableOpacity style={ [styles.addNote, {bottom: insets.bottom - theme.spacing.md}] }>
+                <Ionicons name="add" size={ 24 } />
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     main: {
+        flex: 1,
         padding: theme.spacing.md
+    },
+    addNote: {
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        position: 'absolute',
+        right: 20,
+
+        backgroundColor: theme.colors.bgLight,
+
+        borderRadius: 25,
+
+        elevation: 5,
+        shadowColor: theme.colors.shadow,
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.12,
+        shadowRadius: 10,
+
+        width: 50,
+        height: 50
     }
 });

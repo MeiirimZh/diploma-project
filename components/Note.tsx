@@ -14,7 +14,7 @@ export default function Note({ content, title, date }: Props) {
     const { width, height } = useWindowDimensions();
 
     return (
-        <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.sm, marginBottom: theme.spacing.md } } >
+        <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.md, marginBottom: theme.spacing.md, padding: 5 } } >
             <View style={ styles.content } >
                 <AppText style= { styles.text } >{ content }</AppText>
             </View>
@@ -38,7 +38,13 @@ const styles = StyleSheet.create({
 
         borderRadius: 10,
 
-        padding: theme.spacing.xs,
+        elevation: 5,
+        shadowColor: theme.colors.shadow,
+        shadowOffset: { width: 0, height: 5 },
+        shadowOpacity: 0.12,
+        shadowRadius: 10,
+
+        padding: theme.spacing.md,
 
         height: 220
     },

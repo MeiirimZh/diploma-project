@@ -1,7 +1,6 @@
 const spacing = {
-    xs: 5,
-    sm: 10,
-    md: 20
+    sm: 5,
+    md: 10
 };
 
 export default spacing;

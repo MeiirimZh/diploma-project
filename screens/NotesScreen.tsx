@@ -24,7 +24,7 @@ export default function NotesScreen({ navigation }: Props) {
 
     const notes = [
         {content: 'Lorem ipsum', title: 'Термодинамика', date: '20 декаб.', key: '1'},
-        {content: 'Lorem ipsum', title: 'Линейная алгебра', date: '21 декаб.', key: '2'},
+        {content: 'Lorem ipsum', title: 'Линейная алгебра: основы', date: '21 декаб.', key: '2'},
         {content: 'Lorem ipsum', title: 'Биология', date: '22 декаб.', key: '3'},
         {content: 'Lorem ipsum', title: 'Геофизика', date: '23 декаб.', key: '4'},
         {content: 'Lorem ipsum', title: 'Математика', date: '24 декаб.', key: '5'},

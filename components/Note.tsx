@@ -14,12 +14,12 @@ export default function Note({ content, title, date }: Props) {
     const { width, height } = useWindowDimensions();
 
     return (
-        <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.sm } } >
+        <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.sm, marginBottom: theme.spacing.md } } >
             <View style={ styles.content } >
                 <AppText style= { styles.text } >{ content }</AppText>
             </View>
 
-            <View>
+            <View style={ styles.desc }>
                 <View>
                     <AppText numberOfLines={ 2 } style={ [styles.text, styles.titleText] }>{ title }</AppText>
                 </View>
@@ -42,8 +42,13 @@ const styles = StyleSheet.create({
 
         height: 220
     },
+    desc: {
+        height: 56
+    },
     text: {
-        fontSize: 14
+        fontSize: 14,
+
+        color: theme.colors.text
     },
     titleText: {
         textAlign: 'center',

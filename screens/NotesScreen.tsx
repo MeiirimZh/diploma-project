@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { NotesScreenNavigationProp } from '../types';
 import { theme } from '../src/theme';
 
@@ -22,9 +22,22 @@ export default function NotesScreen({ navigation }: Props) {
         });
     }, [navigation]);
 
+    const notes = [
+        {content: 'Lorem ipsum', title: 'Термодинамика', date: '20 декаб.', key: '1'},
+        {content: 'Lorem ipsum', title: 'Линейная алгебра', date: '21 декаб.', key: '2'},
+        {content: 'Lorem ipsum', title: 'Биология', date: '22 декаб.', key: '3'},
+        {content: 'Lorem ipsum', title: 'Геофизика', date: '23 декаб.', key: '4'},
+        {content: 'Lorem ipsum', title: 'Математика', date: '24 декаб.', key: '5'},
+        {content: 'Lorem ipsum', title: 'Казахский язык', date: '25 декаб.', key: '6'}
+    ];
+
     return (
         <View style={ styles.main } >
-            <Note />
+            <FlatList showsVerticalScrollIndicator={ false }
+                data={ notes } numColumns={ 2 } columnWrapperStyle={{gap: theme.spacing.md}}
+                renderItem={({ item }) => (
+                    <Note content={ item.content } title={ item.title } date={ item.date } />
+                )} />
         </View>
     )
 }

@@ -8,7 +8,7 @@ import TestsScreen from "./screens/TestsScreen";
 
 import { theme } from './src/theme/index';
 
-import { View, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 
 const Tab = createBottomTabNavigator();
 

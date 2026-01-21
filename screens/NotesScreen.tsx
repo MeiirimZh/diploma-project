@@ -44,9 +44,15 @@ export default function NotesScreen({ navigation }: Props) {
                     <Note content={ item.content } title={ item.title } date={ item.date } />
                 )} />
 
-            <TouchableOpacity style={ [styles.addNote, {bottom: insets.bottom - theme.spacing.md}] }>
-                <Ionicons name="add" size={ 24 } />
-            </TouchableOpacity>
+            <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] }>
+                <TouchableOpacity style={ styles.floatingActionsButton } >
+                    <Ionicons name="add" size={ 24 } />
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={ styles.floatingActionsButton } >
+                    <Ionicons name="sparkles" size={ 24} />
+                </TouchableOpacity>
+            </View>
         </View>
     )
 }
@@ -56,12 +62,18 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: theme.spacing.md
     },
-    addNote: {
-        justifyContent: 'center',
-        alignItems: 'center',
+    floatingActions: {
+        flexDirection: 'row',
+        gap: theme.spacing.md,
+
+        width: 110,
 
         position: 'absolute',
-        right: 20,
+        right: 10,
+    },
+    floatingActionsButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
 
         backgroundColor: theme.colors.bgLight,
 

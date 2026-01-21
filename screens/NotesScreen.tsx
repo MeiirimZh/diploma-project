@@ -5,7 +5,7 @@ import { theme } from '../src/theme';
 
 import Search from '../components/Search';
 import Note from '../components/Note';
-import AppText from '../components/AppText';
+import GradientBorderButton from '../components/GradientBorderButton';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 
@@ -49,9 +49,9 @@ export default function NotesScreen({ navigation }: Props) {
                     <Ionicons name="add" size={ 24 } />
                 </TouchableOpacity>
                 
-                <TouchableOpacity style={ styles.floatingActionsButton } >
+                <GradientBorderButton onPress={() => {}} colors={ theme.colors.gradientPrimary } width={ 56 } height={ 56 }>
                     <Ionicons name="sparkles" size={ 24} />
-                </TouchableOpacity>
+                </GradientBorderButton>
             </View>
         </View>
     )
@@ -64,9 +64,10 @@ const styles = StyleSheet.create({
     },
     floatingActions: {
         flexDirection: 'row',
+        alignItems: 'center',
         gap: theme.spacing.md,
 
-        width: 110,
+        width: 122,
 
         position: 'absolute',
         right: 10,

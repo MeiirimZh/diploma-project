@@ -8,9 +8,12 @@ import { theme } from "../src/theme";
 type Props = {
     title: string;
     totalCardsCount: number;
+    onPressMain: () => void;
+    onPressReview: () => void;
+    onPressPractice: () => void;
 };
 
-export default function CardsSet({ title, totalCardsCount }: Props) {
+export default function CardsSet({ title, totalCardsCount, onPressMain, onPressReview, onPressPractice }: Props) {
     const { width, height } = useWindowDimensions();
 
     const getInfoTextWidth = () => {
@@ -20,39 +23,40 @@ export default function CardsSet({ title, totalCardsCount }: Props) {
     const totalCardsCountFormatted = `Количество карточек: ${totalCardsCount}`;
 
     return (
-        <TouchableOpacity onPress={ () => {} } 
-            style={ [{ width: width - theme.spacing.md * 2 }, styles.main] }>
-            <View style={ styles.info } >
-                <View style={ {width: getInfoTextWidth()} } >
-                    <AppText numberOfLines={ 2 } style={ styles.titleText }>
-                        { title }
-                    </AppText>
-                    <AppText numberOfLines={ 1 } style={ styles.totalCardsCountText } >
-                        { totalCardsCountFormatted }
-                    </AppText>
-                </View>
+        <View style={ {width: width - theme.spacing.md * 2, padding: theme.spacing.sm } }>
+            <TouchableOpacity onPress={ onPressMain } style={ styles.main }>
+                <View style={ styles.info } >
+                    <View style={ {width: getInfoTextWidth()} } >
+                        <AppText numberOfLines={ 2 } style={ styles.titleText }>
+                            { title }
+                        </AppText>
+                        <AppText numberOfLines={ 1 } style={ styles.totalCardsCountText } >
+                            { totalCardsCountFormatted }
+                        </AppText>
+                    </View>
 
-                <TouchableOpacity onPress={ () => {} } >
-                    <Ionicons name="ellipsis-vertical" size={ 24 } color={ theme.colors.text } />
-                </TouchableOpacity>
-            </View>
-
-            <View style={ styles.actions } >
-                <View style={ styles.actionsStudy } >
-                    <TouchableOpacity style={ styles.actionsStudyButton } >
-                        <AppText style={ styles.actionsStudyButtonText } >ОБЗОР</AppText>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={ styles.actionsStudyButton } >
-                        <AppText style={ styles.actionsStudyButtonText } >ПРАКТИКА</AppText>
+                    <TouchableOpacity onPress={ () => {} } >
+                        <Ionicons name="ellipsis-vertical" size={ 24 } color={ theme.colors.text } />
                     </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity>
-                    <Ionicons name="share-social" size={ 24 } color={ theme.colors.text } />
-                </TouchableOpacity>
-            </View>
-        </TouchableOpacity>
+                <View style={ styles.actions } >
+                    <View style={ styles.actionsStudy } >
+                        <TouchableOpacity style={ styles.actionsStudyButton } onPress={ onPressReview } >
+                            <AppText style={ styles.actionsStudyButtonText } >ОБЗОР</AppText>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={ styles.actionsStudyButton } onPress={ onPressPractice } >
+                            <AppText style={ styles.actionsStudyButtonText } >ПРАКТИКА</AppText>
+                        </TouchableOpacity>
+                    </View>
+
+                    <TouchableOpacity>
+                        <Ionicons name="share-social" size={ 24 } color={ theme.colors.text } />
+                    </TouchableOpacity>
+                </View>
+            </TouchableOpacity>
+        </View>
     )
 }
 

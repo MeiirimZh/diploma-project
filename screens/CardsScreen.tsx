@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { CardsScreenNavigationProp } from '../types';
 
 import Search from '../components/Search';
@@ -23,9 +23,26 @@ export default function CardsScreen({ navigation }: Props) {
         });
     }, [navigation]);
 
+    const cardsSet = [
+        {title: 'Английский язык', totalCardsCount: 130, key: '1'},
+        {title: 'Математика', totalCardsCount: 54, key: '2'},
+        {title: 'Биология', totalCardsCount: 61, key: '3'},
+        {title: 'Физика', totalCardsCount: 103, key: '4'},
+        {title: 'Химия', totalCardsCount: 80, key: '5'}
+    ];
+
     return (
         <View style={ styles.main }>
-            <CardsSet title={ "Английский язык" } totalCardsCount={ 10 } />
+            <FlatList showsVerticalScrollIndicator={ false }
+                data={ cardsSet } 
+                renderItem={({ item }) => (
+                    <CardsSet title={ item.title } totalCardsCount={ item.totalCardsCount }
+                        onPressMain={() => console.log("Main")}
+                        onPressReview={() => console.log("Review")} 
+                        onPressPractice={() => console.log("Practice")} />
+                )}
+                ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />}
+            />
         </View>
     )
 }

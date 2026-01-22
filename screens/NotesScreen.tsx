@@ -45,7 +45,7 @@ export default function NotesScreen({ navigation }: Props) {
                 )}
                 ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />} />
 
-            <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] }>
+            <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] } >
                 <TouchableOpacity style={ styles.floatingActionsButton } >
                     <Ionicons name="add" size={ 24 } />
                 </TouchableOpacity>

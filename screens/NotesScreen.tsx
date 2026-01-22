@@ -41,8 +41,9 @@ export default function NotesScreen({ navigation }: Props) {
             <FlatList showsVerticalScrollIndicator={ false }
                 data={ notes } numColumns={ 2 } columnWrapperStyle={{gap: theme.spacing.md}}
                 renderItem={({ item }) => (
-                    <Note content={ item.content } title={ item.title } date={ item.date } />
-                )} />
+                    <Note content={ item.content } title={ item.title } date={ item.date } onPress={ () => console.log("Note pressed") } />
+                )}
+                ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />} />
 
             <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] }>
                 <TouchableOpacity style={ styles.floatingActionsButton } >

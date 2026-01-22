@@ -1,4 +1,4 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, TouchableOpacity } from "react-native";
 import { useWindowDimensions } from "react-native";
 
 import { theme } from "../src/theme";
@@ -8,24 +8,27 @@ type Props = {
     content: String;
     title: String;
     date: String;
+    onPress: () => void;
 };
 
-export default function Note({ content, title, date }: Props) {
+export default function Note({ content, title, date, onPress }: Props) {
     const { width, height } = useWindowDimensions();
 
     return (
-        <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.md, marginBottom: theme.spacing.md, padding: 5 } } >
-            <View style={ styles.content }>
-                <AppText style= { styles.text } >{ content }</AppText>
-            </View>
+        <View style={ {width: (width - 3 * theme.spacing.md) / 2, padding: theme.spacing.sm} }>
+            <View style={ {gap: theme.spacing.md } } >
+                <TouchableOpacity style={ styles.content } onPress={ onPress } >
+                    <AppText style= { styles.text } >{ content }</AppText>
+                </TouchableOpacity>
 
-            <View style={ styles.desc }>
-                <View>
-                    <AppText numberOfLines={ 2 } style={ [styles.text, styles.titleText] }>{ title }</AppText>
-                </View>
-                
-                <View>
-                    <AppText numberOfLines={ 1 } style={ [styles.text, styles.dateText] }>{ date }</AppText>
+                <View style={ styles.desc }>
+                    <View>
+                        <AppText numberOfLines={ 2 } style={ [styles.text, styles.titleText] }>{ title }</AppText>
+                    </View>
+
+                    <View>
+                        <AppText numberOfLines={ 1 } style={ [styles.text, styles.dateText] }>{ date }</AppText>
+                    </View>
                 </View>
             </View>
         </View>

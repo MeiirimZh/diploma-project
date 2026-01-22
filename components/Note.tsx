@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useWindowDimensions } from "react-native";
 
 import { theme } from "../src/theme";
@@ -15,7 +15,7 @@ export default function Note({ content, title, date }: Props) {
 
     return (
         <View style={ {width: (width - 3 * theme.spacing.md) / 2, gap: theme.spacing.md, marginBottom: theme.spacing.md, padding: 5 } } >
-            <View style={ styles.content } >
+            <View style={ styles.content }>
                 <AppText style= { styles.text } >{ content }</AppText>
             </View>
 

@@ -1,8 +1,11 @@
 import { useLayoutEffect } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { CardsScreenNavigationProp } from '../types';
 
 import Search from '../components/Search';
+import CardsSet from '../components/CardsSet';
+
+import { theme } from '../src/theme';
 
 type Props = {
     navigation: CardsScreenNavigationProp;
@@ -21,8 +24,15 @@ export default function CardsScreen({ navigation }: Props) {
     }, [navigation]);
 
     return (
-        <View>
-            <Text>Карточки</Text>
+        <View style={ styles.main }>
+            <CardsSet title={ "Английский язык" } totalCardsCount={ 10 } />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    main: {
+        flex: 1,
+        padding: theme.spacing.md
+    }
+});

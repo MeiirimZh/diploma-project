@@ -3,8 +3,6 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { theme } from "../src/theme";
 
-import Button from "./Button";
-
 type Props = React.PropsWithChildren<{
     onPress: () => void;
     colors: [string, string, ...string[]];
@@ -17,13 +15,10 @@ export default function GradientBorderTouchable({ onPress, children, colors, wid
         <LinearGradient colors={ colors } style={ [{width, height}, styles.gradient] }
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0 }} >
-            <Button onPress={ onPress }>
-                { children }
-            </Button>
-            {/* <TouchableOpacity onPress={ onPress }
+            <TouchableOpacity onPress={ onPress }
                 style={ [{width: width - 6, height: height - 6, borderRadius: width / 2}, styles.button] }>
                 { children }
-            </TouchableOpacity> */}
+            </TouchableOpacity>
         </LinearGradient>
     )
 }

@@ -1,5 +1,5 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { TestsScreenNavigationProp } from '../types';
 
 import Search from '../components/Search';
@@ -23,11 +23,25 @@ export default function TestsScreen({ navigation }: Props) {
         });
     }, [navigation]);
 
+    const tests = [
+        {title: 'Python', totalQuestionsCount: 10, lastResult: 100, key: '1'},
+        {title: 'Java', totalQuestionsCount: 20, lastResult: 80, key: '2'},
+        {title: 'C#', totalQuestionsCount: 30, lastResult: 63, key: '3'},
+        {title: 'JavaScript', totalQuestionsCount: 40, lastResult: 50, key: '4'},
+        {title: 'C++', totalQuestionsCount: 50, lastResult: 70, key: '5'},
+        {title: 'Dart', totalQuestionsCount: 60, lastResult: 80, key: '6'}
+    ];
+
     return (
         <View style={ styles.main } >
-            <Test title="Python" totalQuestionsCount={ 25 } lastResult={ 100 }
-                onPressMain={() => console.log("Main")}
-                onPressStart={() => console.log("Start")} />
+            <FlatList showsVerticalScrollIndicator={ false }
+                data={ tests }
+                renderItem={({ item }) => (
+                    <Test title={ item.title } totalQuestionsCount={ item.totalQuestionsCount } lastResult={ item.lastResult }
+                        onPressMain={() => console.log("Main")} onPressStart={() => console.log("Start")} />
+                )}
+                ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />}
+            />
         </View>
     )
 }

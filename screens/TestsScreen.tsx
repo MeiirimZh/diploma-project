@@ -4,7 +4,7 @@ import { TestsScreenNavigationProp } from '../types';
 
 import Search from '../components/Search';
 import Test from '../components/Test';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import FloatingActions from '../components/menus/FloatingActions';
 
 import { theme } from '../src/theme';
 import { Ionicons } from '@expo/vector-icons';
@@ -14,8 +14,6 @@ type Props = {
 };
 
 export default function TestsScreen({ navigation }: Props) {
-    const insets = useSafeAreaInsets();
-
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -47,11 +45,11 @@ export default function TestsScreen({ navigation }: Props) {
                 ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />}
             />
 
-            <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] } >
+            <FloatingActions>
                 <TouchableOpacity style={ styles.floatingActionsButton } >
                     <Ionicons name="add" size={ 24 } />
                 </TouchableOpacity>
-            </View>
+            </FloatingActions>
         </View>
     )
 }
@@ -62,16 +60,6 @@ const styles = StyleSheet.create({
         padding: theme.spacing.md
     },
 
-    floatingActions: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: theme.spacing.md,
-
-        width: 50,
-
-        position: 'absolute',
-        right: theme.spacing.md,
-    },
     floatingActionsButton: {
         justifyContent: 'center',
         alignItems: 'center',

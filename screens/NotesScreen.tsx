@@ -5,8 +5,8 @@ import { theme } from '../src/theme';
 
 import Search from '../components/Search';
 import Note from '../components/Note';
+import FloatingActions from '../components/menus/FloatingActions';
 import GradientBorderButton from '../components/GradientBorderButton';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from "@expo/vector-icons";
 
 type Props = {
@@ -14,8 +14,6 @@ type Props = {
 };
 
 export default function NotesScreen({ navigation }: Props) {
-    const insets = useSafeAreaInsets();
-
     useLayoutEffect(() => {
         navigation.setOptions({
             headerRight: () => (
@@ -45,7 +43,7 @@ export default function NotesScreen({ navigation }: Props) {
                 )}
                 ItemSeparatorComponent={() => <View style={ {height: theme.spacing.md} } />} />
 
-            <View style={ [styles.floatingActions, {bottom: insets.bottom - theme.spacing.md}] } >
+            <FloatingActions>
                 <TouchableOpacity style={ styles.floatingActionsButton } >
                     <Ionicons name="add" size={ 24 } />
                 </TouchableOpacity>
@@ -53,7 +51,7 @@ export default function NotesScreen({ navigation }: Props) {
                 <GradientBorderButton onPress={() => {}} colors={ theme.colors.gradientPrimary } width={ 56 } height={ 56 }>
                     <Ionicons name="sparkles" size={ 24} />
                 </GradientBorderButton>
-            </View>
+            </FloatingActions>
         </View>
     )
 }
@@ -63,16 +61,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: theme.spacing.md
     },
-    floatingActions: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: theme.spacing.md,
-
-        width: 122,
-
-        position: 'absolute',
-        right: 10,
-    },
+    
     floatingActionsButton: {
         justifyContent: 'center',
         alignItems: 'center',

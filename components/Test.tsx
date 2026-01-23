@@ -7,31 +7,35 @@ import { theme } from "../src/theme";
 
 type Props = {
     title: string;
-    totalCardsCount: number;
+    totalQuestionsCount: number;
+    lastResult: number;
     onPressMain: () => void;
-    onPressReview: () => void;
-    onPressPractice: () => void;
+    onPressStart: () => void;
 };
 
-export default function CardsSet({ title, totalCardsCount, onPressMain, onPressReview, onPressPractice }: Props) {
+export default function Test({ title, totalQuestionsCount, lastResult, onPressMain, onPressStart }: Props) {
     const { width, height } = useWindowDimensions();
 
     const getInfoTextWidth = () => {
         return width - theme.spacing.md * 5 - 24;
     };
 
-    const totalCardsCountFormatted = `Количество карточек: ${totalCardsCount}`;
+    const totalQuestionsCountFormatted = `Количество вопросов: ${totalQuestionsCount}`;
+    const lastResultFormatted = `Последний результат: ${lastResult}%`;
 
     return (
-        <View style={ {width: width - theme.spacing.md * 2, padding: theme.spacing.sm } }>
-            <TouchableOpacity onPress={ onPressMain } style={ styles.main }>
+        <View style={ {width: width - theme.spacing.md * 2, padding: theme.spacing.sm } } >
+            <TouchableOpacity onPress={ onPressMain } style={ styles.main } >
                 <View style={ styles.info } >
                     <View style={ {width: getInfoTextWidth()} } >
                         <AppText numberOfLines={ 2 } style={ styles.titleText }>
                             { title }
                         </AppText>
                         <AppText numberOfLines={ 1 } style={ styles.countText } >
-                            { totalCardsCountFormatted }
+                            { totalQuestionsCountFormatted }
+                        </AppText>
+                        <AppText numberOfLines={ 1 } style={ styles.countText } >
+                            { lastResultFormatted }
                         </AppText>
                     </View>
 
@@ -41,13 +45,9 @@ export default function CardsSet({ title, totalCardsCount, onPressMain, onPressR
                 </View>
 
                 <View style={ styles.actions } >
-                    <View style={ styles.actionsStudy } >
-                        <TouchableOpacity style={ styles.actionsStudyButton } onPress={ onPressReview } >
-                            <AppText style={ styles.actionsStudyButtonText } >ОБЗОР</AppText>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={ styles.actionsStudyButton } onPress={ onPressPractice } >
-                            <AppText style={ styles.actionsStudyButtonText } >ПРАКТИКА</AppText>
+                    <View>
+                        <TouchableOpacity style={ styles.actionsStudyButton } onPress={ onPressStart } >
+                            <AppText style={ styles.actionsStudyButtonText } >НАЧАТЬ</AppText>
                         </TouchableOpacity>
                     </View>
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
 
         marginBottom: theme.spacing.md,
         
-        height: 56
+        height: 74
     },
 
     actions: {

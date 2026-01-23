@@ -1,13 +1,13 @@
 import { useLayoutEffect } from 'react';
-import { StyleSheet, View, FlatList, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, FlatList } from 'react-native';
 import { CardsScreenNavigationProp } from '../types';
 
 import Search from '../components/Search';
 import CardsSet from '../components/CardsSet';
 import FloatingActions from '../components/menus/FloatingActions';
+import FloatingActionsButton from '../components/buttons/FloatingActionsButton';
 
 import { theme } from '../src/theme';
-import { Ionicons } from '@expo/vector-icons';
 
 type Props = {
     navigation: CardsScreenNavigationProp;
@@ -47,9 +47,7 @@ export default function CardsScreen({ navigation }: Props) {
             />
 
             <FloatingActions>
-                <TouchableOpacity style={ styles.floatingActionsButton } >
-                    <Ionicons name="add" size={ 24 } />
-                </TouchableOpacity>
+                <FloatingActionsButton name='add' color={ theme.colors.text } onPress={() => console.log("Main")} />
             </FloatingActions>
         </View>
     )
@@ -59,23 +57,5 @@ const styles = StyleSheet.create({
     main: {
         flex: 1,
         padding: theme.spacing.md
-    },
-
-    floatingActionsButton: {
-        justifyContent: 'center',
-        alignItems: 'center',
-
-        backgroundColor: theme.colors.bgLight,
-
-        borderRadius: 25,
-
-        elevation: 5,
-        shadowColor: theme.colors.shadow,
-        shadowOffset: { width: 0, height: 5 },
-        shadowOpacity: 0.12,
-        shadowRadius: 10,
-
-        width: 50,
-        height: 50
     }
 });
